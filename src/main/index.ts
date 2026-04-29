@@ -12,8 +12,8 @@ function createWindow(): void {
     minWidth: 1024,
     minHeight: 700,
     title: 'Industrial Doc Flow',
-    show: false,
     autoHideMenuBar: true,
+    backgroundColor: '#f8fafc',
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false,
@@ -27,9 +27,14 @@ function createWindow(): void {
     return { action: 'deny' }
   })
 
-  win.once('ready-to-show', () => {
-    win.maximize()
+  win.on('ready-to-show', () => {
     win.show()
+    win.focus()
+  })
+
+  win.webContents.on('did-finish-load', () => {
+    if (!win.isVisible()) win.show()
+    win.focus()
   })
 
   if (isDev && process.env['ELECTRON_RENDERER_URL']) {
