@@ -1,0 +1,30 @@
+appId: com.litteral.industrial-doc-flow
+productName: Industrial Doc Flow
+copyright: Copyright © 2026 Litteral Beker
+directories:
+  output: dist
+  buildResources: build
+files:
+  - "out/**/*"
+  - "package.json"
+  - "!**/.vscode/*"
+  - "!src/*"
+  - "!docs/*"
+  - "!**/{.eslintrc.cjs,.prettierrc,.prettierignore,tsconfig.json,tsconfig.node.json,tsconfig.web.json,electron.vite.config.ts}"
+asarUnpack:
+  - "**/node_modules/better-sqlite3/**"
+win:
+  target:
+    - nsis
+mac:
+  target:
+    - dmg
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Office
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  artifactName: ${productName}-${version}-setup.${ext}
