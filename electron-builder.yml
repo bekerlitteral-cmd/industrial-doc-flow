@@ -4,6 +4,8 @@ copyright: Copyright © 2026 Litteral Beker
 directories:
   output: dist
   buildResources: build
+npmRebuild: false
+buildDependenciesFromSource: false
 files:
   - "out/**/*"
   - "package.json"
