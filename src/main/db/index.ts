@@ -4,6 +4,7 @@ import path from 'path'
 import fs from 'fs'
 import { runMigrations } from './migrations'
 import { seedIfEmpty } from './seed'
+import { seedDemoIfNeeded } from './demo-seed'
 
 let dbInstance: Database.Database | null = null
 
@@ -23,6 +24,7 @@ export function getDb(): Database.Database {
   db.pragma('foreign_keys = ON')
   runMigrations(db)
   seedIfEmpty(db)
+  seedDemoIfNeeded(db)
   dbInstance = db
   return db
 }
